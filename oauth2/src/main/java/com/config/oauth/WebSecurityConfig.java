@@ -49,11 +49,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/error",
                 "/**/*.js.map",
                 "/",
-                "/v2/api-docs",
                 "/*.html",
                 "/favicon.ico",
                 "/**/*.html",
-                "/test/**"
+                "/test/**",
+                "/swagger-resources/**",
+                "/swagger-ui.html",
+                "/v2/api-docs",
+                "/webjars/**"
         );
         /**
          * 请求登录的地址

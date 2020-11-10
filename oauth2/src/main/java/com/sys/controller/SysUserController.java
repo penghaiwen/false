@@ -2,9 +2,14 @@ package com.sys.controller;
 
 
 
+import com.exception.RestBean;
+import com.sys.service.ISysUserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -20,8 +25,14 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "用户管理")
 @Validated
 public class SysUserController {
+    @Resource
+    private ISysUserService sysUserService;
 
-
+    @GetMapping("/list")
+    @ApiOperation(value = "获取用户列表")
+    public RestBean list(){
+        return RestBean.ok(sysUserService.list());
+    }
 
 
 
