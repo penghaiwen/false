@@ -76,11 +76,11 @@ public class Swagger2Config {
         // 用ApiInfoBuilder进行定制
         return new ApiInfoBuilder()
                 // 设置标题
-                .title("asdas")
+                .title("排水设备站点")
                 // 描述
                 .description( "接口文档")
                 // 作者信息
-                .contact(new Contact("entfrm", "http://47.100.3.58/", "1029861695@qq.com"))
+                .contact(new Contact("false_老默", "", "1515431459@qq.com"))
                 // 版本
                 .version("版本号:v1" )
                 .build();

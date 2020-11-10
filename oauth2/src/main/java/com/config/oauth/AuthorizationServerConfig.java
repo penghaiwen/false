@@ -46,8 +46,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 //授权同意的类型
                 .authorizedGrantTypes("password", "refresh_token")
                 //有效时间
-                .accessTokenValiditySeconds(60 * 60 * 1)
-//                .refreshTokenValiditySeconds(60  * 1)
+                .accessTokenValiditySeconds(60 * 60 * 30)
+                .refreshTokenValiditySeconds(60  * 60 * 60)
                 .resourceIds("rid")
                 //作用域，范围
                 .scopes("all")
