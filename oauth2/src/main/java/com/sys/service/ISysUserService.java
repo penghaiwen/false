@@ -1,6 +1,9 @@
 package com.sys.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dto.PageDTO;
 import com.security.JwtUser;
 import com.sys.entity.SysUser;
 
@@ -14,6 +17,8 @@ public interface ISysUserService extends IService<SysUser> {
      * @return com.security.JwtUser
      **/
     JwtUser getUserByUsername(String userName);
+
+    IPage<SysUser> page(PageDTO pageDTO);
 
 
 }

@@ -2,6 +2,7 @@ package com.sys.controller;
 
 
 
+import com.dto.PageDTO;
 import com.exception.RestBean;
 import com.sys.service.ISysUserService;
 import io.swagger.annotations.Api;
@@ -30,8 +31,8 @@ public class SysUserController {
 
     @GetMapping("/list")
     @ApiOperation(value = "获取用户列表")
-    public RestBean list(){
-        return RestBean.ok(sysUserService.list());
+    public RestBean list(PageDTO dto){
+        return RestBean.ok(sysUserService.page(dto));
     }
 
 
