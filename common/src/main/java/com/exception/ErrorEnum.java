@@ -26,11 +26,9 @@ public enum ErrorEnum {
 
     CLOSE_OR_RETURN(10086, "关闭当前页面,返回上一页面"),
 
-    RB_CLOSE_LENDING(10087, "已关闭团队人保进件放款"),
 
     POPUP_WINDOW(10000, "弹窗"),
-    RE_LOGIN(500, "账号被强制下线"),
-    REPORT_PRODUCTING(6001, "报告生成中");
+    RE_LOGIN(500, "账号被强制下线");
 
 
     private final Integer ret;

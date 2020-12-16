@@ -76,7 +76,7 @@ public class Swagger2Config {
         // 用ApiInfoBuilder进行定制
         return new ApiInfoBuilder()
                 // 设置标题
-                .title("排水设备站点")
+                .title("false框架dome")
                 // 描述
                 .description( "接口文档")
                 // 作者信息

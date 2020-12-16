@@ -4,5 +4,53 @@
     <select id="getUserByUsername" resultType="com.sys.entity.SysUser">
         select * from sys_user where account=#{userName} and delete_flag =0   limit 1
     </select>
+    <select id="getUserPageVo" resultType="com.sys.vo.UserPageVo">
+        SELECT
+            u.*,
+            d.`name` AS deptName,
+            GROUP_CONCAT(r.`name`) AS roleNames,
+            GROUP_CONCAT(r.`id`) AS roleIds,
+            cu.`nick_name` AS createByName
+        FROM
+            sys_user u
+        LEFT JOIN sys_dept d ON u.`dept_id` = d.`id`
+        LEFT JOIN sys_user_role ur  ON u.id=ur.`user_id`
+        LEFT JOIN sys_role r ON ur.`role_id` =r.`id`
+        LEFT JOIN sys_user cu ON u.`create_by` = cu.`id`
+        <where>
+            and u.delete_flag = 0
+            <if test="userName !=null and userName != ''">
+                and u.nick_name like CONCAT('%',#{userName},'%')
+            </if>
+            <if test="account !=null and account !=''">
+                and u.account like CONCAT('%',#{account},'%')
+            </if>
+        </where>
+        GROUP BY u.id
+    </select>
 
+    <delete id="deleteAllUserRoleByUserId">
+        delete  from sys_user_role where user_id=#{userId}
+    </delete>
+
+
+    <insert id="saveBatchUserRole">
+        INSERT INTO `sys_user_role`(`user_id`, `role_id`) VALUES
+        <foreach collection="list" separator="," item="item">
+            (#{userId}, #{item})
+        </foreach>
+    </insert>
+
+    <select id="getUserInfoByUserId" resultType="com.sys.vo.UserInfoVo">
+        SELECT
+          u.id,
+          u.`account` AS userName,
+          u.`nick_name`,
+          GROUP_CONCAT(ur.`role_id`) AS roleStr
+        FROM
+          sys_user u
+          LEFT JOIN sys_user_role ur
+            ON u.id = ur.`user_id`
+        WHERE u.id = #{id}
+    </select>
 </mapper>

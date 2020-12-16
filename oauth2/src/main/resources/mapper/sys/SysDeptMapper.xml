@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.SysDeptMapper">
+
+
+    <select id="getDeptPageByDeptName" resultType="com.sys.vo.DeptPageVo">
+        SELECT
+        d.`id`,
+        d.`name`,
+        d.`order_num`,
+        d.`create_time`,
+        u.`nick_name` AS createBy
+        FROM
+        sys_dept d
+        LEFT JOIN sys_user u
+        ON d.create_by = u.id
+        <where>
+            and d.delete_flag=0
+            <if test="deptName!=null and deptName!=''">
+                and d.name like CONCAT('%',#{deptName},'%')
+            </if>
+
+        </where>
+    </select>
+    
+
+</mapper>

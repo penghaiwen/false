@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.SysRoleMapper">
+    <select id="getRolePageListByRoleName" resultType="com.sys.vo.RolePageVo">
+        SELECT
+          r.id,
+          r.`name` as roleName,
+          GROUP_CONCAT(rm.`menu_id`) AS menuIds,
+          r.`create_time`,
+          u.`nick_name` createBy
+
+        FROM
+          sys_role r
+          LEFT JOIN sys_role_menu rm
+            ON r.`id` = rm.`role_id`
+          LEFT JOIN sys_user u
+            ON r.`create_by` = u.id
+        <where>
+            and r.`delete_flag` = 0
+            <if test="roleName!=null and roleName!=''">
+                and r.name like CONCAT('%',#{roleName},'%')
+            </if>
+        </where>
+        GROUP BY r.id
+    </select>
+
+
+    <select id="getRoleAll" resultType="com.sys.vo.RoleAllVo">
+        SELECT
+            r.id,
+            r.`name` as roleName
+        FROM
+            sys_role r
+        where
+            r.`delete_flag` = 0
+    </select>
+</mapper>
