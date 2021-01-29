@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/*.html",
                 "/favicon.ico",
                 "/**/*.html",
-                "/test/**",
+                "/ws/**",
                 "/swagger-resources/**",
                 "/swagger-ui.html",
                 "/v2/api-docs",
@@ -61,6 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         /**
          * 请求登录的地址
          */
-        web.ignoring().antMatchers(HttpMethod.POST, "/**/login","/test/**");
+        web.ignoring().antMatchers(HttpMethod.POST, "/**/login","/ws/**");
     }
 }
